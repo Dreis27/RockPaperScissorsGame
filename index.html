@@ -1,0 +1,52 @@
+<script>
+    function getComputerChoice(){
+        const choices = ["rock", "paper", "scissors"];
+        const randomIndex = Math.floor(Math.random() * choices.length);
+        return choices[randomIndex];
+    }
+
+    function playRound(playerSelection, computerSelection){
+        playerSelection = playerSelection.toLowerCase();
+        if (playerSelection == computerSelection){
+            return "This round results in a DRAW!";
+        }
+        else if ((playerSelection == 'rock' && computerSelection == 'paper') || (playerSelection == 'paper' && computerSelection == 'scissors') || (playerSelection == 'scissors' && computerSelection == 'rock' )){
+            return "Machine takes this round!";
+        }
+        else if ((playerSelection == 'paper' && computerSelection == 'rock') || (playerSelection == 'scissors' && computerSelection == 'paper') || (playerSelection == 'rock' && computerSelection == 'scissors' )){
+            return "You win this round!";
+        }
+        else{
+            return "Provide valid input, please!";
+        }
+    }
+
+    function game(){
+
+        console.log("WELCOME TO THE GAME OF ROCK PAPER SCISSORS!\n")
+        let countPlayer = 0;
+        let countComputer = 0;
+        let result = "";
+        let computer = "";
+        let player = "";
+
+        while(countPlayer<3 && countComputer<3){
+            player = prompt("Enter your choice (rock/paper/scissors): ");
+            computer = getComputerChoice();
+            result = playRound(player, computer);
+            if (result == "Machine takes this round!"){
+                countComputer++;
+            }
+            else if (result == "You win this round!"){
+                countPlayer++;
+            }
+            console.log(result);
+        }
+        if(countPlayer>countComputer){
+            console.log("You win!!! Humanity still stands a chance!");
+        }
+        else{
+            console.log("You loose!!! Machines are obviously smarter!");
+        }
+    }
+</script>
